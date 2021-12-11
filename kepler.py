@@ -125,20 +125,34 @@ class Universe2D(Universe):
             return -self.k / dist ** 1
 
 u = Universe3D(MODEL_G, COLLISION_COEFFICIENT, COLLISION_DISTANCE)
+v = Universe2D(MODEL_G, COLLISION_COEFFICIENT, COLLISION_DISTANCE)
 
-
-bodies = [
+bodies_3d = [
     MaterialPoint(u, 90000., vec([0., 0., 0]), vec([0., 0., 0])),
     MaterialPoint(u, 1000., vec([100., 0., 0]), vec([0., -10., 0])),
     MaterialPoint(u, 1000., vec([0., 100., 0]), vec([15., 0., 0]))
 ]
 
+bodies_2d = [
+    MaterialPoint(v, 90000., vec([0., 0.]), vec([0., 0.])),
+    MaterialPoint(v, 1000., vec([100., 0.]), vec([0., -10.])),
+    MaterialPoint(v, 1000., vec([0., 100.]), vec([15., 0.]))
+]
+
 steps = int(TIME_TO_MODEL / MODEL_DELTA_T)
 for stepn in range(steps):
     u.model_step()
+    v.model_step()
+
+plt.gca().set_aspect('equal')
+
+for b in bodies_2d:
+    plt.plot(*tuple(map(list, zip(*b.ptrace))))
+
+plt.show()
 
 def plt_kepler(same_fig=False):
-    for b in bodies:
+    for b in bodies_3d:
         y = (np.cross(b.ptrace, b.vtrace, axis=1)[:,2])
         x = range(len(y))
         plt.plot(x,y)
