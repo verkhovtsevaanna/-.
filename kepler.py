@@ -134,9 +134,9 @@ bodies_3d = [
 ]
 
 bodies_2d = [
-    MaterialPoint(v, 90000., vec([0., 0.]), vec([0., 0.])),
-    MaterialPoint(v, 1000., vec([100., 0.]), vec([0., -10.])),
-    MaterialPoint(v, 1000., vec([0., 100.]), vec([15., 0.]))
+    MaterialPoint(v, 10000., vec([0., 0.]), vec([0., 0.])),
+    MaterialPoint(v, 1000., vec([200., 0.]), vec([0., -90.])),
+    MaterialPoint(v, 1000., vec([0., 100.]), vec([65., 0.]))
 ]
 
 steps = int(TIME_TO_MODEL / MODEL_DELTA_T)
