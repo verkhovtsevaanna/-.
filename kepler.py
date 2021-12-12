@@ -129,8 +129,8 @@ v = Universe2D(MODEL_G, COLLISION_COEFFICIENT, COLLISION_DISTANCE)
 
 bodies_3d = [
     MaterialPoint(u, 90000., vec([0., 0., 0]), vec([0., 0., 0])),
-    MaterialPoint(u, 1000., vec([100., 0., 0]), vec([0., -10., 0])),
-    MaterialPoint(u, 1000., vec([0., 100., 0]), vec([15., 0., 0]))
+    MaterialPoint(u, 10., vec([100., 0., 0]), vec([0., -10., 0])),
+    MaterialPoint(u, 10., vec([0., 100., 0]), vec([15., 0., 0]))
 ]
 
 bodies_2d = [
@@ -161,4 +161,4 @@ def plt_kepler(same_fig=False):
     if same_fig: # Одна картинка на всех
         plt.show()
 
-plt_kepler()
+plt_kepler(True)
