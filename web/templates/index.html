@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title> Алгоритм Евклида </title>
+	</head>
+
+	<body>
+		<form action = "/" method = "POST">
+				a 
+				<input type="number" name = "a" style="width: 50px;">
+				b
+				<input type="number" name = "b" style="width: 50px;">
+				<button type="submit" value = "submit">gcd(a,b)</button>
+		</form>
+		{%if res%}
+		<p>Наибольший общий делитель: {{res}}</p>
+		{%endif%}
+	</body>
+</html>
