@@ -1,0 +1,383 @@
+def sum(beg, end, divis):
+    beg, end, divis, r0, Min, r1, Max :: object
+    r2 :: dict
+    r3 :: str
+    r4, r5, razb, r6, r7, r8, r9, r10, delta :: object
+    r11 :: int
+    r12, r13, r14 :: object
+    r15 :: int
+    r16, i, r17, r18 :: object
+    r19 :: int32
+    r20 :: bit
+    r21 :: bool
+    r22, r23, r24, r25 :: object
+    r26 :: dict
+    r27 :: str
+    r28, r29, r30, subrazb, r31, df :: object
+    r32 :: dict
+    r33 :: str
+    r34, r35, r36, r37 :: object
+    r38 :: dict
+    r39 :: str
+    r40, r41, r42, r43 :: object
+    r44 :: int
+    r45, r46 :: object
+    r47 :: tuple[object, object, object]
+    r48, r49 :: object
+L0:
+    r0 = object 0
+    inc_ref r0
+    Min = r0
+    r1 = object 0
+    inc_ref r1
+    Max = r1
+    r2 = darbu_compiled.globals :: static
+    r3 = 'linspace'
+    r4 = CPyDict_GetItem(r2, r3)
+    if is_error(r4) goto L30 (error at sum:7) else goto L1
+L1:
+    r5 = PyObject_CallFunctionObjArgs(r4, beg, end, divis, 0)
+    dec_ref r4
+    if is_error(r5) goto L30 (error at sum:7) else goto L2
+L2:
+    razb = r5
+    r6 = object 1
+    r7 = PyObject_GetItem(razb, r6)
+    if is_error(r7) goto L31 (error at sum:8) else goto L3
+L3:
+    r8 = object 0
+    r9 = PyObject_GetItem(razb, r8)
+    if is_error(r9) goto L32 (error at sum:8) else goto L4
+L4:
+    r10 = PyNumber_Subtract(r7, r9)
+    dec_ref r7
+    dec_ref r9
+    if is_error(r10) goto L31 (error at sum:8) else goto L5
+L5:
+    delta = r10
+    r11 = CPyObject_Size(razb)
+    if is_error(r11) goto L33 (error at sum:10) else goto L6
+L6:
+    r12 = box(int, r11)
+    r13 = object 1
+    r14 = PyNumber_Subtract(r12, r13)
+    dec_ref r12
+    if is_error(r14) goto L33 (error at sum:10) else goto L7
+L7:
+    r15 = 0
+    inc_ref r15 :: int
+    r16 = box(int, r15)
+    i = r16
+L8:
+    inc_ref r15 :: int
+    r17 = box(int, r15)
+    r18 = PyObject_RichCompare(r17, r14, 0)
+    dec_ref r17
+    if is_error(r18) goto L34 (error at sum:10) else goto L9
+L9:
+    r19 = PyObject_IsTrue(r18)
+    dec_ref r18
+    r20 = r19 >= 0 :: signed
+    if not r20 goto L34 (error at sum:10) else goto L10 :: bool
+L10:
+    r21 = truncate r19: int32 to builtins.bool
+    if r21 goto L11 else goto L35 :: bool
+L11:
+    r22 = PyObject_GetItem(razb, i)
+    if is_error(r22) goto L34 (error at sum:12) else goto L12
+L12:
+    r23 = object 1
+    r24 = PyNumber_Add(i, r23)
+    dec_ref i
+    if is_error(r24) goto L36 (error at sum:12) else goto L13
+L13:
+    r25 = PyObject_GetItem(razb, r24)
+    dec_ref r24
+    if is_error(r25) goto L36 (error at sum:12) else goto L14
+L14:
+    r26 = darbu_compiled.globals :: static
+    r27 = 'linspace'
+    r28 = CPyDict_GetItem(r26, r27)
+    if is_error(r28) goto L37 (error at sum:12) else goto L15
+L15:
+    r29 = object 1000
+    r30 = PyObject_CallFunctionObjArgs(r28, r22, r25, r29, 0)
+    dec_ref r28
+    dec_ref r22
+    dec_ref r25
+    if is_error(r30) goto L38 (error at sum:12) else goto L16
+L16:
+    subrazb = r30
+    r31 = f(subrazb)
+    dec_ref subrazb
+    if is_error(r31) goto L38 (error at sum:13) else goto L17
+L17:
+    df = r31
+    r32 = darbu_compiled.globals :: static
+    r33 = 'min'
+    r34 = CPyDict_GetItem(r32, r33)
+    if is_error(r34) goto L39 (error at sum:14) else goto L18
+L18:
+    r35 = PyObject_CallFunctionObjArgs(r34, df, 0)
+    dec_ref r34
+    if is_error(r35) goto L39 (error at sum:14) else goto L19
+L19:
+    r36 = PyNumber_Multiply(r35, delta)
+    dec_ref r35
+    if is_error(r36) goto L39 (error at sum:14) else goto L20
+L20:
+    r37 = PyNumber_InPlaceAdd(Min, r36)
+    dec_ref Min
+    dec_ref r36
+    if is_error(r37) goto L40 (error at sum:14) else goto L21
+L21:
+    Min = r37
+    r38 = darbu_compiled.globals :: static
+    r39 = 'max'
+    r40 = CPyDict_GetItem(r38, r39)
+    if is_error(r40) goto L39 (error at sum:15) else goto L22
+L22:
+    r41 = PyObject_CallFunctionObjArgs(r40, df, 0)
+    dec_ref r40
+    dec_ref df
+    if is_error(r41) goto L38 (error at sum:15) else goto L23
+L23:
+    r42 = PyNumber_Multiply(r41, delta)
+    dec_ref r41
+    if is_error(r42) goto L38 (error at sum:15) else goto L24
+L24:
+    r43 = PyNumber_InPlaceAdd(Max, r42)
+    dec_ref Max
+    dec_ref r42
+    if is_error(r43) goto L41 (error at sum:15) else goto L25
+L25:
+    Max = r43
+L26:
+    r44 = CPyTagged_Add(r15, 2)
+    dec_ref r15 :: int
+    inc_ref r44 :: int
+    r15 = r44
+    r45 = box(int, r44)
+    i = r45
+    goto L8
+L27:
+    r46 = PyNumber_Subtract(Min, Max)
+    if is_error(r46) goto L30 (error at sum:16) else goto L28
+L28:
+    r47 = (Min, Max, r46)
+    dec_ref Min
+    dec_ref Max
+    dec_ref r46
+    r48 = box(tuple[object, object, object], r47)
+    return r48
+L29:
+    r49 = <error> :: object
+    return r49
+L30:
+    dec_ref Min
+    dec_ref Max
+    goto L29
+L31:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    goto L29
+L32:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref r7
+    goto L29
+L33:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    goto L29
+L34:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref i
+    goto L29
+L35:
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref i
+    goto L27
+L36:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref r22
+    goto L29
+L37:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref r22
+    dec_ref r25
+    goto L29
+L38:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    goto L29
+L39:
+    dec_ref Min
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref df
+    goto L29
+L40:
+    dec_ref Max
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    dec_ref df
+    goto L29
+L41:
+    dec_ref Min
+    dec_ref razb
+    dec_ref delta
+    dec_ref r14
+    dec_ref r15 :: int
+    goto L29
+
+def f(x):
+    x, r0, r1, r2 :: object
+L0:
+    r0 = object 2
+    r1 = PyNumber_Multiply(x, r0)
+    if is_error(r1) goto L2 (error at f:19) else goto L1
+L1:
+    return r1
+L2:
+    r2 = <error> :: object
+    return r2
+
+def __top_level__():
+    r0, r1 :: object
+    r2 :: bit
+    r3 :: str
+    r4 :: object
+    r5 :: dict
+    r6, r7, r8 :: str
+    r9 :: list
+    r10, r11, r12, r13 :: ptr
+    r14 :: str
+    r15 :: object
+    r16, r17, r18 :: str
+    r19 :: object
+    r20 :: str
+    r21 :: int32
+    r22 :: bit
+    r23, r24, r25 :: str
+    r26 :: object
+    r27 :: str
+    r28 :: int32
+    r29 :: bit
+    r30, r31, r32 :: str
+    r33 :: object
+    r34 :: str
+    r35 :: int32
+    r36 :: bit
+    r37 :: None
+L0:
+    r0 = builtins :: module
+    r1 = load_address _Py_NoneStruct
+    r2 = r0 != r1
+    if r2 goto L3 else goto L1 :: bool
+L1:
+    r3 = 'builtins'
+    r4 = PyImport_Import(r3)
+    if is_error(r4) goto L12 (error at <module>:-1) else goto L2
+L2:
+    builtins = r4 :: module
+    dec_ref r4
+L3:
+    r5 = darbu_compiled.globals :: static
+    r6 = 'linspace'
+    r7 = 'min'
+    r8 = 'max'
+    r9 = PyList_New(3)
+    if is_error(r9) goto L12 (error at <module>:1) else goto L4
+L4:
+    r10 = get_element_ptr r9 ob_item :: PyListObject
+    r11 = load_mem r10 :: ptr*
+    inc_ref r6
+    set_mem r11, r6 :: builtins.object*
+    r12 = r11 + 8
+    inc_ref r7
+    set_mem r12, r7 :: builtins.object*
+    r13 = r11 + 16
+    inc_ref r8
+    set_mem r13, r8 :: builtins.object*
+    r14 = 'numpy'
+    r15 = PyImport_ImportModuleLevelObject(r14, r5, 0, r9, 0)
+    dec_ref r9
+    if is_error(r15) goto L12 (error at <module>:1) else goto L5
+L5:
+    numpy = r15 :: module
+    r16 = 'numpy'
+    r17 = 'linspace'
+    r18 = 'linspace'
+    r19 = CPyImport_ImportFrom(r15, r16, r17, r18)
+    if is_error(r19) goto L13 (error at <module>:1) else goto L6
+L6:
+    r20 = 'linspace'
+    r21 = CPyDict_SetItem(r5, r20, r19)
+    dec_ref r19
+    r22 = r21 >= 0 :: signed
+    if not r22 goto L13 (error at <module>:1) else goto L7 :: bool
+L7:
+    r23 = 'numpy'
+    r24 = 'min'
+    r25 = 'min'
+    r26 = CPyImport_ImportFrom(r15, r23, r24, r25)
+    if is_error(r26) goto L13 (error at <module>:1) else goto L8
+L8:
+    r27 = 'min'
+    r28 = CPyDict_SetItem(r5, r27, r26)
+    dec_ref r26
+    r29 = r28 >= 0 :: signed
+    if not r29 goto L13 (error at <module>:1) else goto L9 :: bool
+L9:
+    r30 = 'numpy'
+    r31 = 'max'
+    r32 = 'max'
+    r33 = CPyImport_ImportFrom(r15, r30, r31, r32)
+    dec_ref r15
+    if is_error(r33) goto L12 (error at <module>:1) else goto L10
+L10:
+    r34 = 'max'
+    r35 = CPyDict_SetItem(r5, r34, r33)
+    dec_ref r33
+    r36 = r35 >= 0 :: signed
+    if not r36 goto L12 (error at <module>:1) else goto L11 :: bool
+L11:
+    return 1
+L12:
+    r37 = <error> :: None
+    return r37
+L13:
+    dec_ref r15
+    goto L12
